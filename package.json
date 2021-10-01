@@ -21,6 +21,8 @@
   "homepage": "https://github.com/prarthavigarge/Lif-E-Line#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "firebase": "^9.1.1",
+    "firebase-admin": "^9.12.0",
     "mongodb": "^4.1.1",
     "mongoose": "^5.13.7"
   },
