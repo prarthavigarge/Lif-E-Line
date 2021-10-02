@@ -12,28 +12,7 @@ var serviceAccount = {
     auth_provider_x509_cert_url,
     client_x509_cert_url
   }
+  
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 });
-
-
-const createHospitalUser = (req,res,next)=>{
-    admin
-    .auth()
-    .createUser({
-        email:req.body.email,
-        password: req.body.password,
-    })
-    .then((userRecord) => {
-        console.log('Successfully created new user:', userRecord.uid);
-    })
-    .catch((error) => {
-        console.log('Error creating new user:', error);
-    });
-    next();
-}
-
-module.exports = createHospitalUser
-
-
-

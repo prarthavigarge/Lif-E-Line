@@ -1,14 +1,14 @@
 const express = require('express')
 const hospital = require('../models/hospital')
 const mongoose = require('mongoose')
-const createHospitalUser = require('../middleware/auth')
+const createHospitalUser = require('../middleware/createUserAuth')
 
 const router=express.Router()
 
 // POST Route to create Hospital
-router.post('/hospital',async (req,res)=>{
-    const Hospital = new hospital(req.body)
-    
+router.post('/hospital',createHospitalUser,async (req,res)=>{
+    // const Hospital = new hospital(req.body)
+    // console.log(createHospitalUser)
     try{
         await Hospital.save()
         res.status(201).send({Hospital})
