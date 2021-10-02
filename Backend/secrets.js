@@ -1,0 +1,14 @@
+const mongo_connection = 'mongodb+srv://aryauser:arya123@cluster0.lwmxq.mongodb.net/Lif-E-Line?retryWrites=true&w=majority'
+const port = process.env.PORT || 3000
+const type = "service_account"
+const project_id = "lif-e-line"
+const private_key_id = "ec6c3dce73a9a944d266e62396e053bb45dec3c2"
+const private_key = "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC4u1YebnZ89E9a\n6tJnpmzmQXdjeFYQuIbPAx3ygT1qd3QVHrshidYCfco63L0KOnLjQxLPk4gzbkMQ\nMHDn7fEZShocJa2e7nf0xEMM10qRZur7G/d31YqVcJtnRresNeyvqyfo/PCgSHYj\n5KtfdBSdiNtb+DiNXJ1GquyeYXz08jxNZv4DSnuceBGB7UdGVDm2JnYY8Bs60Cuh\nw66fhCT3vSu/BQTBS4V35P9dS25RMBwwC47xSfN/DbKL8Yfq8WloAARyHghCd3Ho\nO5ZlNPYQOuk9cO+g6vBWQW8gbDaZ6uWbEzfSyHu0iLhn9QfuLQ1HpuBjx0Q0uDdc\nu0M4kl33AgMBAAECggEADXNX1BO/R94yuvrMbXnw2vEbBCCab6bn60HIV+8bbYRG\nF6rq/YhU5KM2atkbYJfHOWSZsDMx9cC1BwQ9QaiRvKwoa4foyjYwgMobhwn+psij\nb7uRELt5LDlh71VMVrB/ISlUA222CDhOddLsEXaucOv/64SO0D1/7B8nkb6lGQvn\nMguILX5Yp4Eb1fIDEdprlOOw1/BEMlo3bivqTS86EEC3qr6JXR970wH5+aLqSrdU\nCHt+XFe0n4wIgaJ49L2ZUyuil5AU5/c9wHctP13YoRJyPejA2XmOqOdf3piaOCpp\neRpm5/MwqD2XqPgbSyBk8Zo9+QvXnjHSQ3Sg9yIKwQKBgQDhesARnIVGPFTUGi2z\nN2vJxWH9IpQ0su8pbvqM3l4/5yypfs36rOB0MpS/dXhuoUGH5m5B1WMqB+8crHoL\n3Yio9liofIeA0T05tM6o3cOJjVcoA4eOLdXp9cx7yrb0ihY6EFILJFvgrnGnYadd\nxe22EzYBhsjdXUMInP9CywnJQQKBgQDRvJu8G5lccHx5aGZ6F0AzP3IcMFZ5jBFy\nVoPB3vdHdNzM/mMB1hHDlrVZuN6+HPu1rQFRlqUYvmQ+pBab6rkDyOWPIQifWVQF\nhOTfqKDbpdZe4QjpcbyrCvwMeHSmFVcrspqecPTJHsXSXDu//1Sk5X8jDW4Y6CL6\nX57dtBbhNwKBgBiXttM06yRZ+DaaFFnztYHwUVu2pcuJqKQwQouSxVza7fgeqICq\n0mBaE/c97MDEPc2AyI3NpF81NlM+TKF2rC0hkVHvIyhdqfvdSJ0KcwVRsSvgFqzf\nOvGlqYPm/EV3uizjEs+8S3kaDbNf501HBUJSnhVUihv6zBDobr7uPkcBAoGBAIm0\ncPfHkyCrRj6cOjRNEbzUGkLBxfUV7tqITQe8MdT7uIDrQOwStiUZzUX0aGKgOu+k\ngGomI42ka8LpD2MdcI44l+gqgzPEfbMF9xOV7s9oCeDPlX9YSsxucOBrMgNdnZc2\nM+h1N3LZPn8ISb6ckOGXQKsuBSxbNaP3piHgPOlvAoGACDwx+3bDeySh5Ly65ZDG\n3oefLClaUBx9CxwL/3VPdwJE1BLyQbrRQJTpFqirrJJZT6OQWTc2bukO/2huthKv\nrPZov2EX/IjNJEniuzFcuDuoqzR96JLiiaOiPLl1iaTlRDAAT1RI49BKCjCKUufX\naQ68+m7hJ/FrQW9mSmbkO3I=\n-----END PRIVATE KEY-----\n"
+const client_email = "firebase-adminsdk-lpmvj@lif-e-line.iam.gserviceaccount.com"
+const client_id = "108756200265552889435"
+const auth_uri = "https://accounts.google.com/o/oauth2/auth"
+const token_uri = "https://oauth2.googleapis.com/token"
+const auth_provider_x509_cert_url = "https://www.googleapis.com/oauth2/v1/certs"
+const client_x509_cert_url = "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-lpmvj%40lif-e-line.iam.gserviceaccount.com"
+
+module.exports = {mongo_connection,port,type,project_id,private_key_id,private_key,client_email,client_id,auth_uri,token_uri,auth_provider_x509_cert_url,client_x509_cert_url}
