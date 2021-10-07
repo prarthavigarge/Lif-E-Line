@@ -7,16 +7,16 @@ const router=express.Router()
 
 // POST Route to create Hospital
 router.post('/hospital',checkUser,async (req,res)=>{
-    // req.body.email = req.email
-    console.log(req.email)
-    // const Hospital = new hospital(req.body)
+    req.body.email = req.email
+    // console.log(req.email)
+    const Hospital = new hospital(req.body)
     // console.log(createHospitalUser)
-    // try{
-    //     await Hospital.save()
-    //     res.status(201).send({Hospital})
-    // } catch(e){
-    //     res.status(400).send(e)
-    // }
+    try{
+        await Hospital.save()
+        res.status(201).send({Hospital})
+    } catch(e){
+        res.status(400).send(e)
+    }
 })
 
 // GET Route to get all hospitals

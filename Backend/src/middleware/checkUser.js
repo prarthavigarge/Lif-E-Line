@@ -13,11 +13,12 @@ const checkUser = (req, res, next) => {
         .verifyIdToken(idToken)
         .then((decodedToken) => {
             req.email=decodedToken.email
+            next()
         })
         .catch((error) => {
             console.log(error)
         });
-        next()
+        
 }
 module.exports = checkUser
 
