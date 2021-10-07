@@ -8,11 +8,10 @@ const firebaseConfig = {
     measurementId: "G-90MREKP27E"
 };
 
-firebase.initialiseApp(firebaseConfig)
+firebase.initializeApp(firebaseConfig)
 
 const auth = firebase.auth()
-
-function signUp() {
+const signUp = ()=>{
     var email = document.getElementById("email")
     var password = document.getElementById("password")
 
@@ -23,5 +22,5 @@ function signUp() {
     alert("Signed Up")
 }
 
-module.exports = signUp
+
 
