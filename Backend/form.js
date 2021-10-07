@@ -11,7 +11,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig)
 
 const auth = firebase.auth()
-const signUp = ()=>{
+const signUp = () => {
     var email = document.getElementById("email")
     var password = document.getElementById("password")
 
@@ -22,7 +22,7 @@ const signUp = ()=>{
     alert("Signed Up")
 }
 
-const signIn = ()=>{
+const signIn = () => {
     var email = document.getElementById("email")
     var password = document.getElementById("password")
 
@@ -30,20 +30,44 @@ const signIn = ()=>{
     promise.catch(e => {
         alert(e.message)
     })
-    alert("Signed In "+email.value)
+    alert("Signed In " + email.value)
 }
 
-const signOut = ()=>{
+const signOut = () => {
     auth.signOut()
     alert("Signed Out")
 }
 
-const currentUser = ()=>{
-    const user=auth.currentUser
+const currentUser = async () => {
+    const user = auth.currentUser
     const idToken = auth.currentUser.getIdToken(true)
     alert(user.email)
     console.log(idToken)
+    firebase.auth().currentUser.getIdToken(true).then(function (idToken) {
+        var req = {
+            method: 'POST',
+            headers: {
+                Authorization: idToken,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({}),
+            // redirect: 'follow'
+        };
+
+        await fetch("localhost:3000/hospital", req)
+            .then(response => {
+                return response.json()
+            })
+            .then(result => {
+            })
+            .catch(error => {
+            });
+    }).catch(function (error) {
+    });
+
 }
+
+
 
 
 
