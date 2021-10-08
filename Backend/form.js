@@ -11,50 +11,68 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig)
 
 const auth = firebase.auth()
-const signUp = () => {
+const signUp = async () => {
     var email = document.getElementById("email")
     var password = document.getElementById("password")
-
     const promise = auth.createUserWithEmailAndPassword(email.value, password.value)
     promise.catch(e => {
         alert(e.message)
     })
-    alert("Signed Up")
-}
+    promise.then(async () => {
+        alert("Signed Up")
+        await auth.currentUser.getIdToken(true).then(async (idToken) => {
+            console.log(idToken)
+            var req = {
+                method: 'POST',
+                headers: {
+                    Authorization: idToken,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({}),
+                // redirect: 'follow'
+            };
 
-const signIn = () => {
-    var email = document.getElementById("email")
-    var password = document.getElementById("password")
-
-    const promise = auth.signInWithEmailAndPassword(email.value, password.value)
-    promise.catch(e => {
-        alert(e.message)
+            await fetch("localhost:3000/hospital", req)
+                .then(response => {
+                    return response.json()
+                })
+        }).catch(function (error) {
+        });
     })
-    alert("Signed In " + email.value)
 }
+
+
 
 const signOut = () => {
     auth.signOut()
     alert("Signed Out")
 }
 
-const currentUser = async () => {
-    const user = auth.currentUser
-    const idToken = auth.currentUser.getIdToken(true)
-    alert(user.email)
-    console.log(idToken)
-    firebase.auth().currentUser.getIdToken(true).then(function (idToken) {
+const signIn = async () => {
+    var email = document.getElementById("email")
+    var password = document.getElementById("password")
+
+    firebase.auth().currentUser.getIdToken(true).then(async (idToken2) => {
+        const promise = auth.signInWithEmailAndPassword(email.value, password.value)
+        promise.catch(e => {
+            alert(e.message)
+        })
+        alert("Signed In " + email.value)
+        const user = auth.currentUser
+        const idToken = auth.currentUser.getIdToken(true)
+        alert(user.email)
+        console.log(idToken2)
         var req = {
             method: 'POST',
             headers: {
-                Authorization: idToken,
+                Authorization: idToken2,
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({}),
             // redirect: 'follow'
         };
 
-        await fetch("localhost:3000/hospital", req)
+        await fetch("localhost:3000/hospital/login", req)
             .then(response => {
                 return response.json()
             })
@@ -64,7 +82,6 @@ const currentUser = async () => {
             });
     }).catch(function (error) {
     });
-
 }
 
 

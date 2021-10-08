@@ -12,7 +12,7 @@ const checkUser = (req, res, next) => {
         .auth()
         .verifyIdToken(idToken)
         .then((decodedToken) => {
-            req.email=decodedToken.email
+            req.user=decodedToken
             next()
         })
         .catch((error) => {
