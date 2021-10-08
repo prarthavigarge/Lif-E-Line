@@ -16,13 +16,14 @@ router.post('/organ',async(req,res)=>{
     }
 })
 
-// GET Route to get all the organs
-router.get('/organ',async(req,res)=>{
+// GET Route to get all the organs associated to the hospital
+router.get('/organ/:id',async(req,res)=>{
+    const _id = req.params.id
     try{
-        const organ_data = await organ.find({})
-        res.status(200).send(organ_data)
+        const new_data= await organ.find({hos_id:_id}).populate("hos_id","name")
+        res.send(new_data)
     } catch(e){
-        res.status(500).send(e)
+        res.status(500).send()
     }
 })
 
