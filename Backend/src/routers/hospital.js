@@ -64,10 +64,9 @@ router.patch('/hospital/me',checkUser,async(req,res)=>{
 })
 
 // DELETE Route for deleting profile
-router.delete('/hospital/:id',async(req,res)=>{
-    const _id = req.params.id
+router.delete('/hospital/me',checkUser,async(req,res)=>{
     try{
-        const hospital_data = await hospital.findOneAndDelete({_id})
+        const hospital_data = await hospital.findOneAndDelete({email:req.user.email})
         res.status(200).send(hospital_data)
     } catch(e){
         res.status(500).send(e)
