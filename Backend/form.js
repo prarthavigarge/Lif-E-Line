@@ -21,8 +21,8 @@ const signUp = async () => {
     promise.then(async () => {
         alert("Signed Up")
         await auth.currentUser.getIdToken(true).then(async (idToken) => {
-            console.log(idToken)
-            var req = {
+            console.log("FRONTEND\n" + idToken)
+            var requestOptions = {
                 method: 'POST',
                 headers: {
                     Authorization: idToken,
@@ -32,20 +32,26 @@ const signUp = async () => {
                 // redirect: 'follow'
             };
 
-            await fetch("localhost:3000/hospital", req)
+            await fetch("http://localhost:3000/hospital", requestOptions)
                 .then(response => {
                     return response.json()
+                }).then((result) => {
+                    console.log(result)
                 })
         }).catch(function (error) {
         });
     })
+
 }
 
 
 
 const signOut = () => {
-    auth.signOut()
-    alert("Signed Out")
+    firebase.auth().signOut().then(function () {
+        console.log('Signed Out');
+    }, function (error) {
+        console.error('Sign Out Error', error);
+    });
 }
 
 const signIn = async () => {

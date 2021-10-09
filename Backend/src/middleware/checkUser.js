@@ -7,7 +7,7 @@ const checkUser = (req, res, next) => {
         console.log("Error! User not Authorised")
     }    
     const idToken = req.header("Authorization").replace("Bearer ", "");
-    // console.log(idToken)
+    console.log("BACKEND\n"+idToken)
     admin
         .auth()
         .verifyIdToken(idToken)

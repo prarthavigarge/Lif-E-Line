@@ -10,7 +10,7 @@ router.post('/hospital',checkUser,async (req,res)=>{
     req.body.email = req.user.email
     // console.log(req.email)
     const Hospital = new hospital(req.body)
-    res.send(req.user)
+    // res.send(req.user)
     try{
         await Hospital.save()
         res.status(201).send({Hospital})
