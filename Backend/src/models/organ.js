@@ -6,7 +6,7 @@ const organ_Schema = new Schema({
         type:Schema.Types.ObjectId,
         ref:"hospital"
     },
-    donor_name:{
+    donor_name:{    
         type:String,
         required:true
     },
