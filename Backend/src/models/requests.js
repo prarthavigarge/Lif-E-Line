@@ -2,10 +2,10 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const requests_Schema = new Schema({
-    hos_id:[{
+    hos_id:{
         type:Schema.Types.ObjectId,
         ref:'hospital'
-    }],
+    },
     patient_name:{
         type:String,
         required:true

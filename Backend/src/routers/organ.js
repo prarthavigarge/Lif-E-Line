@@ -1,6 +1,5 @@
 const express = require('express')
 const organ = require('../models/organ')
-const hospital = require('../models/hospital')
 const mongoose = require('mongoose')
 const checkUser = require('../middleware/checkUser')
 const getHospital = require('../middleware/getHospital')
