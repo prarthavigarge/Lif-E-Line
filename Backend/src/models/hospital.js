@@ -12,7 +12,8 @@ const hospital_schema = new Schema({
             if(!(validator.isAlphanumeric(value)) || (value.length<9)){
                 throw new Error("INVAILD LICENSE NO")
             }
-        }
+        },
+        immutable:true
     },
     name:{
         type:String,
@@ -25,7 +26,8 @@ const hospital_schema = new Schema({
             if(!(validator.isEmail(value))){
                 throw new Error("INVALID EMAIL!")
             }
-        }
+        },
+        immutable:true
     },
     building:{
         type:String,

@@ -4,7 +4,7 @@ require("./firebase")
 const checkUser = (req, res, next) => {
     
     if (!req.header("Authorization") || req.header("Authorization") == undefined) {
-        console.log("Error! User not Authorised")
+        throw new Error("USER NOT AUTHORISED")
     }    
     const idToken = req.header("Authorization").replace("Bearer ", "");
     console.log("BACKEND\n"+idToken)
