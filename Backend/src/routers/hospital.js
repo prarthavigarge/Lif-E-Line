@@ -1,6 +1,5 @@
 const express = require('express')
 const hospital = require('../models/hospital')
-const mongoose = require('mongoose')
 const checkUser = require('../middleware/checkUser')
 const getHospital = require('../middleware/getHospital')
 
@@ -33,7 +32,6 @@ router.get('/hospital',async(req,res)=>{
     }
 })
 
-
 // PATCH Route for updating hospital
 router.patch('/hospital/me',checkUser,getHospital,async(req,res)=>{
     const updates = Object.keys(req.body)
@@ -51,6 +49,5 @@ router.delete('/hospital/me',checkUser,getHospital, async(req,res)=>{
         res.status(400).send(e)
     }
 })
-
 
 module.exports = router
