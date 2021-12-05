@@ -12,6 +12,7 @@ mongoose.connect(mongo_connection,{
     useUnifiedTopology: true,
     useCreateIndex: true
 }, async()=>{
+    console.log("Connected to Mongoose Successfully!")
     await hospital.init()
     await organ.init()
     await requests.init()

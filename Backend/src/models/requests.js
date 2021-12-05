@@ -4,7 +4,8 @@ const Schema = mongoose.Schema
 const requests_Schema = new Schema({
     hos_id:{
         type:Schema.Types.ObjectId,
-        ref:'hospital'
+        ref:'hospital',
+        immutable:true
     },
     patient_name:{
         type:String,
