@@ -12,7 +12,12 @@ const requests_Schema = new Schema({
     },
     patient_age:{
         type:Number,
-        required:true
+        required:true,
+        validate(value){
+            if(value<0){
+                throw new Error("INVALID AGE")
+            }
+        }
     },
     blood_group:{
         type:String,

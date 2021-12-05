@@ -12,7 +12,12 @@ const organ_Schema = new Schema({
     },
     donor_age:{
         type:Number,
-        required:true
+        required:true,
+        validate(value){
+            if(value<0){
+                throw new Error("INVALID AGE")
+            }
+        }
     },
     organ:{
         type:String,
