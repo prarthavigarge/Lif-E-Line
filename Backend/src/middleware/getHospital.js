@@ -1,7 +1,7 @@
 const hospital = require('../models/hospital')
 
 const hospital_data = async(req,res,next)=>{
-    const email = req.email
+    const email = req.body.email
     try{
         const hospital_data = await hospital.findOne({email})
         req.hospital = hospital_data
