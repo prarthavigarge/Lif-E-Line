@@ -13,7 +13,7 @@ router.post('/organ',getHospital,async(req,res)=>{
         organ:req.body.organ,
         blood_group:req.body.blood_group,
         condition:req.body.condition,
-        status:req.body.status,
+        status:"AVAILABLE",
         hos_id:req.hospital._id
     }
     const Organ = new organ(data)
