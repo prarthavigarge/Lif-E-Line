@@ -6,7 +6,7 @@ const getHospital = require('../middleware/getHospital')
 const router = express.Router()
 
 // POST Route to create an organ profile
-router.post('/organ',checkUser,getHospital,async(req,res)=>{
+router.post('/organ',getHospital,async(req,res)=>{
     req.body.hos_id=req.hospital._id
     const Organ = new organ(req.body)
     try{
@@ -18,7 +18,7 @@ router.post('/organ',checkUser,getHospital,async(req,res)=>{
 })
 
 // GET Route to get all the organs associated to the hospital
-router.get('/organ/me',checkUser,getHospital,async(req,res)=>{
+router.get('/organ/me',getHospital,async(req,res)=>{
     const hos_id = req.hospital._id
     try{
         const new_data= await organ.find({hos_id}).populate("hos_id","name")
@@ -29,13 +29,13 @@ router.get('/organ/me',checkUser,getHospital,async(req,res)=>{
 })
 
 // GET Route to get all the organs associated to any hospitals
-router.get('/organ',checkUser,async(req,res)=>{
+router.get('/organ',async(req,res)=>{
     const organ_data = await organ.find({})
     res.send(organ_data)
 })
 
 // DELETE Route to delete a particular organ
-router.delete('/organ/:id',checkUser,async(req,res)=>{
+router.delete('/organ/:id',async(req,res)=>{
     const _id = req.params.id
     try{
         const organ_data = await organ.findOne({_id})
@@ -47,7 +47,7 @@ router.delete('/organ/:id',checkUser,async(req,res)=>{
 })
 
 // PATCH Route to edit a particular organ
-router.patch('/organ/:id',checkUser,async(req,res)=>{
+router.patch('/organ/:id',async(req,res)=>{
     const _id = req.params.id
     const updates = req.body
     try{
