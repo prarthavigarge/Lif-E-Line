@@ -9,7 +9,7 @@ const getHospital = require('../middleware/getHospital')
 const router = express.Router()
 
 // POST Route to accept a particular organ
-router.post('/accept/:id',checkUser,getHospital,async(req,res)=>{
+router.post('/accept/:id',getHospital,async(req,res)=>{
     const hos_id =  req.hospital._id
     const _id = req.params.id
     const request_data = await requests.findOne({_id})
@@ -34,7 +34,7 @@ router.post('/accept/:id',checkUser,getHospital,async(req,res)=>{
 
 
 // GET Route to get all accepted ones
-router.get('/accept',checkUser,getHospital,async(req,res)=>{
+router.get('/accept',getHospital,async(req,res)=>{
     const accept_data = await organ_accept.find({hos_id:req.hospital._id}).populate(['hos_id','org_id','req_id'])
     res.send(accept_data)
 })

@@ -6,7 +6,7 @@ const getHospital = require('../middleware/getHospital')
 const router = express.Router()
 
 // POST Route to create an organ profile
-router.post('/organ',checkUser,getHospital,async(req,res)=>{
+router.post('/organ',getHospital,async(req,res)=>{
     req.body.hos_id=req.hospital._id
     const Organ = new organ(req.body)
     try{
@@ -18,7 +18,7 @@ router.post('/organ',checkUser,getHospital,async(req,res)=>{
 })
 
 // GET Route to get all the organs associated to the hospital
-router.get('/organ/me',checkUser,getHospital,async(req,res)=>{
+router.get('/organ/me',getHospital,async(req,res)=>{
     const hos_id = req.hospital._id
     try{
         const new_data= await organ.find({hos_id}).populate("hos_id","name")

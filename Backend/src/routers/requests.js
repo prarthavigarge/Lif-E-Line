@@ -8,7 +8,7 @@ const { request } = require('express')
 const router = express.Router()
 
 // POST Route for creating a requests
-router.post('/request_organ',checkUser,getHospital,async(req,res)=>{
+router.post('/request_organ',getHospital,async(req,res)=>{
     req.body.hos_id = req.hospital._id
     const Request = new requests(req.body)
     try{
@@ -20,7 +20,7 @@ router.post('/request_organ',checkUser,getHospital,async(req,res)=>{
 })
 
 // GET Route for getting all Requests
-router.get('/request_organ',checkUser,getHospital,async(req,res)=>{
+router.get('/request_organ',getHospital,async(req,res)=>{
     const hos_id = req.hospital._id
     try{
         const Requests = await requests.find({hos_id}).populate("hospital","name")
@@ -31,7 +31,7 @@ router.get('/request_organ',checkUser,getHospital,async(req,res)=>{
 })
 
 // GET Route to get all the requests possibile to give
-router.get('/request_organ/available',checkUser,getHospital,async(req,res)=>{
+router.get('/request_organ/available',getHospital,async(req,res)=>{
     const my_requests = await requests.find({hos_id:req.hospital._id})
     const new_data = await Promise.all(my_requests.map(async(request)=>{
         const data = await organ.findOne({organ:request.organ,status:"AVAILABLE",blood_group:request.blood_group})
@@ -48,7 +48,7 @@ router.get('/request_organ/available',checkUser,getHospital,async(req,res)=>{
 })
 
 // PATCH Route to update a particular request
-router.patch('/request_organ/:id',checkUser,async(req,res)=>{
+router.patch('/request_organ/:id',async(req,res)=>{
     const _id = req.params.id
     const updates = req.body
     try{
@@ -62,7 +62,7 @@ router.patch('/request_organ/:id',checkUser,async(req,res)=>{
 })
 
 // DELETE Route for updating a particular request
-router.delete('/request_organ/:id',checkUser,getHospital,async(req,res)=>{
+router.delete('/request_organ/:id',getHospital,async(req,res)=>{
     const _id = req.params.id
     try{
         const deleted_data = await requests.findOne({_id,hos_id:req.hospital._id})
