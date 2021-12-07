@@ -7,8 +7,16 @@ const router = express.Router()
 
 // POST Route to create an organ profile
 router.post('/organ',getHospital,async(req,res)=>{
-    req.body.hos_id=req.hospital._id
-    const Organ = new organ(req.body)
+    let Organ = {
+        donor_name:req.body.donor_name,
+        donor_age:req.body.donor_age,
+        organ:req.body.organ,
+        blood_group:req.body.blood_group,
+        condition:req.body.condition,
+        status:req.body.status,
+        hos_id:req.hospital._id
+    }
+    Organ = new organ(req.body)
     try{
         await Organ.save()
         res.status(201).send(Organ)
