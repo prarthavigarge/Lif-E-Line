@@ -9,8 +9,14 @@ const router = express.Router()
 
 // POST Route for creating a requests
 router.post('/request_organ',getHospital,async(req,res)=>{
-    req.body.hos_id = req.hospital._id
-    const Request = new requests(req.body)
+    const data = {
+        patient_name:req.body.patient_name,
+        patient_age:req.body.patient_age,
+        blood_group:req.body.blood_group,
+        organ:req.body.organ,
+        hos_id:req.hospital._id
+    }
+    const Request = new requests(data)
     try{
         await Request.save()
         res.status(200).send(Request)
