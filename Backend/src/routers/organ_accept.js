@@ -14,9 +14,9 @@ router.post('/accept/:id',getHospital,async(req,res)=>{
     const _id = req.params.id
     const request_data = await requests.findOne({_id,status:"OPEN"})
     console.log(request_data)
-    const organ_data = await organ.findOne({organ:request_data.organ})
+    const organ_data = await organ.findOne({organ:request_data.organ,status:"AVAILABLE",blood_group:request_data.blood_group})
     console.log(organ_data)
-    if(organ_data.status=="AVAILABLE" && organ_data.blood_group == request_data.blood_group){
+    if(organ_data){
         let accept_data = {
             hos_id,
             org_id:organ_data._id,
