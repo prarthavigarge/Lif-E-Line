@@ -38,7 +38,7 @@ router.post('/request_organ/me',getHospital,async(req,res)=>{
 
 // GET Route to get all the requests possibile to give
 router.post('/request_organ/available',getHospital,async(req,res)=>{
-    const my_requests = await requests.find({hos_id:req.hospital._id})
+    const my_requests = await requests.find({hos_id:req.hospital._id}).populate('hos_id')
     const new_data = await Promise.all(my_requests.map(async(request)=>{
         const data = await organ.findOne({organ:request.organ,status:"AVAILABLE",blood_group:request.blood_group})
         if(data!==null){
