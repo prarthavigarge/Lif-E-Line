@@ -34,7 +34,7 @@ router.post('/accept/:id',getHospital,async(req,res)=>{
 
 
 // GET Route to get all accepted ones
-router.get('/accept',getHospital,async(req,res)=>{
+router.post('/accept',getHospital,async(req,res)=>{
     const accept_data = await organ_accept.find({hos_id:req.hospital._id}).populate(['hos_id','org_id','req_id'])
     res.send(accept_data)
 })

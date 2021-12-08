@@ -17,12 +17,12 @@ router.post('/hospital',async (req,res)=>{
 })
 
 // GET ROUTE for gettig the hospital details
-router.get('/hospital/profile',getHospital,async(req,res)=>{
+router.post('/hospital/profile',getHospital,async(req,res)=>{
     res.status(201).send(req.hospital)
 })
 
 // GET Route to get all hospitals
-router.get('/hospital',async(req,res)=>{
+router.post('/hospital',async(req,res)=>{
     try{
         const hospital_data = await hospital.find({})
         res.status(200).send(hospital_data)

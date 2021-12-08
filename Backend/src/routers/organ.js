@@ -26,7 +26,7 @@ router.post('/organ',getHospital,async(req,res)=>{
 })
 
 // GET Route to get all the organs associated to the hospital
-router.get('/organ/me',getHospital,async(req,res)=>{
+router.post('/organ/me',getHospital,async(req,res)=>{
     const hos_id = req.hospital._id
     try{
         const new_data= await organ.find({hos_id}).populate("hos_id","name")
@@ -37,7 +37,7 @@ router.get('/organ/me',getHospital,async(req,res)=>{
 })
 
 // GET Route to get all the organs associated to any hospitals
-router.get('/organ',async(req,res)=>{
+router.post('/organ',async(req,res)=>{
     const organ_data = await organ.find({})
     res.send(organ_data)
 })
