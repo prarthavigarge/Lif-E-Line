@@ -27,6 +27,11 @@ const requests_Schema = new Schema({
     organ:{
         type:String,
         required:true
+    },
+    status:{
+        type:String,
+        enum:["OPEN","CLOSE"],
+        default:"OPEN"
     }
 })
 

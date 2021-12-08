@@ -29,7 +29,7 @@ router.post('/request_organ',getHospital,async(req,res)=>{
 router.post('/request_organ/me',getHospital,async(req,res)=>{
     const hos_id = req.hospital._id
     try{
-        const Requests = await requests.find({hos_id}).populate("hospital","name")
+        const Requests = await requests.find({hos_id,status:"OPEN"}).populate("hospital","name")
         res.status(200).send(Requests)
     } catch(e){
         res.status(500).send(e)

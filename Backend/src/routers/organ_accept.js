@@ -12,7 +12,7 @@ const router = express.Router()
 router.post('/accept/:id',getHospital,async(req,res)=>{
     const hos_id =  req.hospital._id
     const _id = req.params.id
-    const request_data = await requests.findOne({_id})
+    const request_data = await requests.findOne({_id,status:"OPEN"})
     console.log(request_data)
     const organ_data = await organ.findOne({organ:request_data.organ})
     console.log(organ_data)
@@ -26,6 +26,8 @@ router.post('/accept/:id',getHospital,async(req,res)=>{
         await accept_data.save()
         organ_data.status="NOTAVAILABLE"
         await organ_data.save()
+        request_data.status="CLOSE"
+        await request_data.save()
         res.send(accept_data)
     } else{
         throw new Error("ERROR")
