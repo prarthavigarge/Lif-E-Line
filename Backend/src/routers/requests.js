@@ -26,7 +26,7 @@ router.post('/request_organ',getHospital,async(req,res)=>{
 })
 
 // GET Route for getting all Requests
-router.post('/request_organ',getHospital,async(req,res)=>{
+router.post('/request_organ/me',getHospital,async(req,res)=>{
     const hos_id = req.hospital._id
     try{
         const Requests = await requests.find({hos_id}).populate("hospital","name")
